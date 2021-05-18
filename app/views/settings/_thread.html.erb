@@ -1,0 +1,27 @@
+<p>
+  <%= label_tag('settings[display]', l(:label_thread_display)) %>
+  <label class="block">
+    <%=  radio_button_tag('settings[display]', '', @settings['display'].to_s == '') %>
+    <%= l(:label_no_change) %>
+  </label>
+  <label class="block">
+    <%=  radio_button_tag('settings[display]', 'buttons', @settings['display'] == 'buttons') %>
+    <%= l(:label_navigation_buttons) %>
+  </label>
+</p>
+<% if Redmine::VERSION::MAJOR < 4 || Redmine::VERSION::MINOR < 1 %>
+  <p>
+    <%= label_tag('settings[fix_message_id]', l(:label_fix_message_id)) %>
+    <label class="block">
+      <%= check_box_tag('settings[fix_message_id]', '1', @settings['fix_message_id']) %>
+      <%= l(:text_fix_message_id).html_safe %>
+    </label>
+  </p>
+<% end %>
+<p>
+  <%= label_tag('settings[email_quotes]', l(:label_email_quotes)) %>
+  <label class="block">
+    <%= check_box_tag('settings[email_quotes]', '1', @settings['email_quotes']) %>
+    <%= l(:text_email_quotes) %>
+  </label>
+</p>

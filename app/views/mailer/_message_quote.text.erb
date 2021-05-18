@@ -1,0 +1,6 @@
+<%= '> ' * (level - 1) %><%= l(:text_date_user, :author => message.author, :date => format_time(message.created_on)) %>
+<%= '> ' * level %><%= message.content.gsub(%r{(\r?\n|\r\n?)}, "\n" + ('> ' * level)) %>
+<% if message.reply? -%>
+<%= '> ' * level %>
+<%= render :partial => 'message_quote', :formats => [ :text ], :locals => { :message => message.reply_to, :level => level + 1 } %>
+<% end %>

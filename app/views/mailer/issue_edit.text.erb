@@ -1,0 +1,13 @@
+<%= "(#{l(:field_private_notes)}) " if @journal.private_notes? -%><%= l(:text_issue_updated, :id => "##{@issue.id}", :author => @journal.user) %>
+
+<% details_to_strings(@journal_details, true).each do |string| -%>
+<%= string %>
+<% end -%>
+
+<% if @journal.notes? -%>
+<%= @journal.notes %>
+
+<% end -%>
+<%= render_issue_thread_quotes(@journal, true) %>
+----------------------------------------
+<%= render :partial => 'issue', :formats => [:text], :locals => { :issue => @issue, :user => @user, :users => @users, :issue_url => @issue_url } %>

@@ -1,0 +1,6 @@
+<em><%= l(:text_date_user, :author => message.author, :date => format_time(message.created_on)) %></em>
+<blockquote>
+  <%= textilizable(message, :content, :only_path => false) %>
+
+  <%= render :partial => 'message_quote', :formats => [ :html ], :locals => { :message => message.reply_to, :level => level + 1 } if message.reply? %>
+</blockquote>

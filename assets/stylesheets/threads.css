@@ -1,0 +1,66 @@
+@-webkit-keyframes highlight {
+    from { background-color: rgba(255, 255, 221, 1) }
+    to { background-color: rgba(255, 255, 221, 0) }
+}
+@-moz-keyframes highlight {
+    from { background-color: rgba(255, 255, 221, 1) }
+    to { background-color: rgba(255, 255, 221, 0) }
+}
+@-o-keyframes highlight {
+    from { background-color: rgba(255, 255, 221, 1) }
+    to { background-color: rgba(255, 255, 221, 0) }
+}
+@keyframes highlight {
+    from { background-color: rgba(255, 255, 221, 1) }
+    to { background-color: rgba(255, 255, 221, 0) }
+}
+.jstBlock .wiki-preview {
+    margin-bottom: 5px;
+}
+div.journal > div:target, div.message.reply:target {
+    -webkit-animation: highlight 0.5s ease-in-out;
+    -moz-animation: highlight 0.5s ease-in-out;
+    -o-animation: highlight 0.5s ease-in-out;
+    animation: highlight 0.5s ease-in-out;
+}
+.issue-thread-form {
+    margin-bottom: 5px;
+    clear: left;
+}
+.thread-links {
+    margin-bottom: 0.5em;
+    margin-top: -0.25em;
+    font-size: 0.9em;
+    color: #959595;
+}
+.thread-links .navigation-links {
+    margin-left: 1.5em;
+    cursor: default;
+}
+.thread-links .navigation-links .icon-only {
+    cursor: unset;
+    opacity: 0.5;
+}
+.thread-links .navigation-links .icon-only.active {
+    cursor: pointer;
+    opacity: 1;
+}
+.icon-thread-up {
+    background-image: url(../images/up.png);
+    background-size: 16px;
+}
+.icon-thread-previous {
+    background-image: url(../images/previous.png);
+    background-size: 16px;
+}
+.icon-thread-down {
+    background-image: url(../images/down.png);
+    background-size: 16px;
+}
+.icon-thread-next {
+    background-image: url(../images/next.png);
+    background-size: 16px;
+}
+body.controller-messages #reply {
+    margin-top: 1em;
+}

@@ -1,0 +1,11 @@
+<% journals ||= tab[:journals] || [] %>
+<% journals.each_with_index{ |journal, index| journal.indice = index + 1 } %>
+<% Issue.load_journals_thread_data(User.current.wants_comments_in_reverse_order? ? journals.reverse : journals) %>
+
+<% locals = { :journals => journals } %>
+<% locals[:tab] = tab if defined?(tab) %>
+<% locals[:issue] = issue if defined?(issue) %>
+<% locals[:prefix] = prefix if defined?(prefix) %>
+<% locals[:show_details] = show_details if defined?(show_details) %>
+
+<%= render :file => File.join(Rails.root, 'plugins/redmine_issue_tabs/app/views/redmine_issue_tabs/_history.html.erb'), :locals => locals %>

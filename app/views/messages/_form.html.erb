@@ -1,0 +1,44 @@
+<% replying ||= false %>
+
+<%= render :file => File.join(Rails.root, 'app/views/messages/_form.html.erb'), :locals => { :f => f, :replying => replying } %>
+
+<% if @replies.present? %>
+  <label style="display: none;">
+    <% excerpts = @replies.collect{ |message| [ "#{message.author}: #{truncate_single_line_raw(message.content, 100)}", message.id ] } %>
+    <%= l(:field_reply_to) %>
+    <%= f.select(:reply_to_id, excerpts, { :include_blank => true }, :id => 'message_reply_to_id') %>
+  </label>
+<% end %>
+
+<%= javascript_tag do %>
+  $(document).ready(function() {
+    var $content = $('#content');
+    $content.children('div.message').next('br').remove();
+    var $heading = $content.children('h3.comments');
+    var $reply = $heading.next('p');
+    if ($reply.length > 0) {
+      $reply.insertBefore($heading);
+      $.merge($reply, $('#reply').prev('p'));
+    } else {
+      $reply = $('#reply').prev('p');
+      $reply.insertBefore($heading);
+    }
+    var $replyLink = $reply.children('a');
+    if ($replyLink.length > 0) {
+      var handler_without_reply_to = $replyLink.attr('onclick');
+      $replyLink.attr('onclick', "$('#message_reply_to_id').val('');" + handler_without_reply_to.replace(/\.toggle\(/, '.show('));
+    }
+    var $cancelLink = $('<a>', {
+      href: '#',
+      onclick: "$('#message_reply_to_id').val(''); $('#reply').hide(); return false;",
+      text: '<%= j(l(:button_cancel)) %>'
+    });
+    var $previewLink = $('#message-form').children('a').last();
+    if (($previewLink.length > 0) && ($previewLink.text() == '<%= j(l(:label_preview)) %>')) {
+      $previewLink.after(' | ', $cancelLink);
+    } else {
+      $('#message-form').children('input[type=submit]').after(' ', $cancelLink);
+    }
+    $('#message_content').closest('p').append($('#message_reply_to_id').closest('label').show());
+  });
+<% end %>

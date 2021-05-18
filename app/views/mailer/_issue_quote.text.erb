@@ -1,0 +1,10 @@
+<%= '> ' * (level - 1) %><%= "(#{l(:field_private_notes)}) " if journal.private_notes? -%><%= l(:text_updated_by_at, :author => journal.user, :date => format_time(journal.created_on, true, @users.first)) %>
+<% details_to_strings(journal.visible_details(@users.first), true).each do |string| -%>
+<%= '> ' * level %><%= string %>
+<% end -%>
+<%= '> ' * level %>
+<% if journal.notes? -%>
+<%= '> ' * level %><%= journal.notes.gsub(%r{(\r?\n|\r\n?)}, "\n" + ('> ' * level)) %>
+<%= '> ' * level %>
+<% end -%>
+<%= render :partial => 'issue_quote', :formats => [ :text ], :locals => { :journal => journal.reply_to, :level => level + 1 } if journal.reply? %>

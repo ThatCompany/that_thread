@@ -1,0 +1,41 @@
+<% excerpts = if Redmine::Plugin.installed?(:redmine_issue_tabs)
+     @comments ||= begin
+       # See RedmineIssueTabs::IssuesControllerPatch
+       comments = Journal.visible.preload(:user)
+                         .where(:journalized_type => 'Issue', :journalized_id => @issue.id)
+                         .where("(#{Journal.table_name}.notes IS NOT NULL AND #{Journal.table_name}.notes <> '') OR " +
+                                "EXISTS(SELECT 1 FROM #{JournalDetail.table_name} " +
+                                       "INNER JOIN #{Attachment.table_name} ON #{JournalDetail.table_name}.property = 'attachment' AND " +
+                                                                              "#{Attachment.table_name}.id = CAST(#{JournalDetail.table_name}.prop_key AS DECIMAL(30,0)) " +
+                                       "WHERE #{JournalDetail.table_name}.journal_id = #{Journal.table_name}.id)")
+       comments = comments.order("#{Journal.table_name}.created_on DESC, #{Journal.table_name}.id DESC") if User.current.wants_comments_in_reverse_order?
+       comments.to_a
+     end
+     @comments.collect.with_index{ |comment, index| comment.notes? ? ["##{index + 1} (#{comment.user}): #{truncate_single_line_raw(comment.notes, 100)}", comment.id ] : nil }.compact
+   else
+     @journals ||= begin
+       journals = @issue.visible_journals_with_index
+       journals.reverse! if User.current.wants_comments_in_reverse_order?
+       journals
+     end
+     @journals.select(&:notes?).collect{ |journal| [ "##{journal.indice} (#{journal.user}): #{truncate_single_line_raw(journal.notes, 100)}", journal.id ] }
+   end %>
+
+<% unless excerpts.empty? %>
+  <label id="issue-thread-form" class="issue-thread-form block" style="display: none;">
+    <%= l(:field_reply_to) %>
+    <%= form.select(:reply_to_id, excerpts, :include_blank => true, :no_label => true) %>
+  </label>
+
+  <%= javascript_tag do %>
+    $(document).ready(function() {
+      var $replyTo = $('#issue-thread-form');
+      $replyTo.siblings('.jstBlock, .jstEditor').after($replyTo.show());
+      var $cancel = $('#issue-form').children('a').last();
+      if (($cancel.length > 0) && ($cancel.text() == '<%= j(l(:button_cancel)) %>')) {
+        var handler_without_reply_to = $cancel.attr('onclick');
+        $cancel.attr('onclick', "$('#issue_reply_to_id').val('');" + handler_without_reply_to);
+      }
+    });
+  <% end %>
+<% end %>

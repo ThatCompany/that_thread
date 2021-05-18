@@ -1,0 +1,13 @@
+en:
+  field_reply_to: Reply to
+  label_in_response_to: In response to
+  label_response: Response
+  label_fix_message_id: Fix email Message-IDs
+  label_email_quotes: Quotes in email notifications
+  label_thread_display: Issue notes / forum messages structure
+  label_no_change: No change
+  label_navigation_buttons: Navigation buttons
+  text_fix_message_id: Enable this in order for email clients be able to thread Redmine email notifications
+  text_email_quotes: Enable this for users to see the entire thread in email notifications
+  text_updated_by_at: "Updated by %{author} at %{date}:"
+  text_date_user: "%{date}, %{author}:"
