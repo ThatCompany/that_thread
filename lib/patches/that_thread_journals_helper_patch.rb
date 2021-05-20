@@ -56,7 +56,7 @@ module Patches
             end
 
             def notes_anchor_prefix
-                @anchor_prefix ||= Redmine::Plugin.installed?(:redmine_issue_tabs) ? 'notes' : 'note'
+                @anchor_prefix ||= Redmine::VERSION::MAJOR < 4 && Redmine::Plugin.installed?(:redmine_issue_tabs) ? 'notes' : 'note'
             end
 
         end
