@@ -1,17 +1,26 @@
 # That Thread Plugin
 
-This plugin makes it possible to have threaded conversations in issues and forums. It does this by:
+This plugin adds email-like thread capability to Redmine's issues and forums.
 
-- Allowing to reply to particular issue notes and forum message.
-- Providing buttons, that can be used to navigate the thread tree.
-*This has to be enabled in the plugin's settings.*
+Want to thread a reply? Use the new **Reply** link or choose the original message
+in the new **Reply to** select box.
+
+To easily navigate the thread tree you can use the new buttons which can be enabled
+via the **Navigation buttons** option.
 
 ![Navigation buttons](navigation.png)
 
-- Including the whole conversation into email notifications.
-*This has to be enabled in the plugin's settings.*
-- For Redmine 4.0 and below: Making it possible for email clients to build threads from Redmine email notifications.
-*This is included into Redmine 4.1 and above. For Redmine 4.0 and below this has to be enabled in the plugin's settings.*
+When you receive notifications from Redmine there is no excerpt from the prior
+communication sent along with it. This can make it a little confusing at times
+to determine what the notification email is referring to. Once
+**Quotes in email notifications** option is enabled, the prior communication will
+be sent along with the current notification so it is clear what is being replied to.
+Email communication becomes far more useful when the thread is sent along and email
+communication in Redmine becomes much more understandable with this option.
+
+For Redmine 4.0 and below: You can also make it possible for email clients to build threads
+from Redmine email notifications. Just enable **Fix email Message-IDs** option for this.
+*This is included into Redmine 4.1 and above.*
 
 ## Installation
 
