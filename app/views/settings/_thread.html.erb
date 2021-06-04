@@ -9,7 +9,7 @@
     <%= l(:label_navigation_buttons) %>
   </label>
 </p>
-<% if Redmine::VERSION::MAJOR < 4 || Redmine::VERSION::MINOR < 1 %>
+<% if Redmine::VERSION::MAJOR < 4 || (Redmine::VERSION::MAJOR == 4 && Redmine::VERSION::MINOR < 1) %>
   <p>
     <%= label_tag('settings[fix_message_id]', l(:label_fix_message_id)) %>
     <label class="block">
