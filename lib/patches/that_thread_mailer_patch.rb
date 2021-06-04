@@ -87,10 +87,18 @@ module Patches
 
             def reply_headers(message, object)
                 return unless object.reply_to
-                message[:in_reply_to] = "<#{self.class.message_id_for(object.reply_to)}>"
+                message[:in_reply_to] = if self.class.method(:message_id_for).arity == 2 # Redmine 4.1 and above
+                    "<#{self.class.message_id_for(object.reply_to, object.reply_to.is_a?(Journal) ? object.reply_to.user : object.reply_to.author)}>"
+                else
+                    "<#{self.class.message_id_for(object.reply_to)}>"
+                end
                 references = []
                 while object = object.reply_to
-                    references << "<#{self.class.references_for(object)}>"
+                    references << if self.class.method(:references_for).arity == 2 # Redmine 4.1 and above
+                        "<#{self.class.references_for(object, object.is_a?(Journal) ? object.user : object.author)}>"
+                    else
+                        "<#{self.class.references_for(object)}>"
+                    end
                 end
                 message[:references] = message[:references].to_s + ' ' + references.reverse.join(' ')
                 message.subject.prepend('RE: ')

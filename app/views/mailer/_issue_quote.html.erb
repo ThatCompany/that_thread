@@ -1,7 +1,7 @@
-<% if journal.private_notes? %>(<%= l(:field_private_notes) %>)<% end %> <%= l(:text_updated_by_at, :author => journal.user, :date => format_time(journal.created_on, true, @users.first)) %>
+<% if journal.private_notes? %>(<%= l(:field_private_notes) %>)<% end %> <%= l(:text_updated_by_at, :author => journal.user, :date => format_time(journal.created_on, true, @user || @users.first)) %>
 <blockquote>
   <ul class="journal details">
-    <% details_to_strings(journal.visible_details(@users.first), false, :only_path => false).each do |string| %>
+    <% details_to_strings(journal.visible_details(@user || @users.first), false, :only_path => false).each do |string| %>
       <li><%= string %></li>
     <% end %>
   </ul>
