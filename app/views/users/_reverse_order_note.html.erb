@@ -1,0 +1,11 @@
+<% if Setting.plugin_that_thread['display'] == 'thread' %>
+  <div id="reverse_order_note_container" style="display: none;">
+    <em class="info error" style="<%= 'display: none;' unless user.wants_comments_in_reverse_order? %>"><%= l(:text_reverse_order_not_compatible_with_thread) %></em>
+  </div>
+
+  <%= javascript_tag do %>
+    $('#pref_comments_sorting').on('change', function() {
+      $(this).siblings('em.info.error').toggle($(this).val() == 'desc');
+    }).after($('#reverse_order_note_container').children('em.info.error'));
+  <% end %>
+<% end %>

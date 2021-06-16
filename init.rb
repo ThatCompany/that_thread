@@ -13,11 +13,17 @@ Rails.configuration.to_prepare do
     unless MessagesController.included_modules.include?(Patches::ThatThreadMessagesControllerPatch)
         MessagesController.send(:include, Patches::ThatThreadMessagesControllerPatch)
     end
+    unless JournalsController.included_modules.include?(Patches::ThatThreadJournalsControllerPatch)
+        JournalsController.send(:include, Patches::ThatThreadJournalsControllerPatch)
+    end
     unless JournalsHelper.included_modules.include?(Patches::ThatThreadJournalsHelperPatch)
         JournalsHelper.send(:include, Patches::ThatThreadJournalsHelperPatch)
     end
     unless AttachmentsHelper.included_modules.include?(Patches::ThatThreadAttachmentsHelperPatch)
         AttachmentsHelper.send(:include, Patches::ThatThreadAttachmentsHelperPatch)
+    end
+    unless Redmine::Pagination::Helper.included_modules.include?(Patches::ThatThreadPaginationHelperPatch)
+        Redmine::Pagination::Helper.send(:include, Patches::ThatThreadPaginationHelperPatch)
     end
     unless MailHandler.included_modules.include?(Patches::ThatThreadMailHandlerPatch)
         MailHandler.send(:include, Patches::ThatThreadMailHandlerPatch)

@@ -1,0 +1,15 @@
+<%= render :file => File.join(Rails.root, 'app/views/messages/show.html.erb') %>
+
+<% if Setting.plugin_that_thread['display'] == 'thread' %>
+  <% reply_by_level_map = @replies.group_by{ |message| message.level || 0 } %>
+  <%= javascript_tag do %>
+    var $replies = $('#replies');
+    $replies.before($replies.children('h3, p'));
+    $replies.addClass('threaded');
+    <% reply_by_level_map.each do |level, messages| %>
+      <% if level > 0 %>
+        $('<%= messages.collect{ |message| "#message-#{message.id}" }.join(', ') %>').addClass('idnt idnt-<%= level %>');
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

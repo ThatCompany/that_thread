@@ -14,6 +14,9 @@ module Patches
                 attr_accessor :html_data
 
                 before_create :handle_invalid_reply
+
+                alias_method :css_classes_without_thread, :css_classes
+                alias_method :css_classes, :css_classes_with_thread
             end
         end
 
@@ -21,6 +24,14 @@ module Patches
 
             def reply?
                 !!reply_to
+            end
+
+            def css_classes_with_thread
+                css_classes = css_classes_without_thread
+                if html_data && html_data[:level] && html_data[:level] > 0
+                    css_classes << " idnt idnt-#{html_data[:level] > 9 ? 9 : html_data[:level]}"
+                end
+                css_classes
             end
 
         private

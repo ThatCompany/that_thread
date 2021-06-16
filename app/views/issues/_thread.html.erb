@@ -1,0 +1,7 @@
+<% if Setting.plugin_that_thread['display'] == 'thread' && !User.current.wants_comments_in_reverse_order? %>
+  <%= javascript_tag do %>
+    $(document).ready(function() {
+      $('#tab-content-comments').addClass('threaded');
+    });
+  <% end %>
+<% end %>

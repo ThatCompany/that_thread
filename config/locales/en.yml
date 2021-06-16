@@ -7,6 +7,9 @@ en:
   label_thread_display: Issue notes / forum messages structure
   label_no_change: No change
   label_navigation_buttons: Navigation buttons
+  label_threaded_view: Threaded view
+  text_redmine_issue_tabs_not_installed: Threaded view requires <a href="http://rmplus.pro/redmine/plugins/issue_tabs">Redmine Issue Tabs</a> plugin (or Redmine 4.1)
+  text_reverse_order_not_compatible_with_thread: Reverse chronological order is not compatible with threaded view
   text_fix_message_id: Enable this in order for email clients be able to thread Redmine email notifications
   text_email_quotes: Enable this for users to see the entire thread in email notifications
   text_updated_by_at: "Updated by %{author} at %{date}:"

@@ -8,6 +8,14 @@
     <%=  radio_button_tag('settings[display]', 'buttons', @settings['display'] == 'buttons') %>
     <%= l(:label_navigation_buttons) %>
   </label>
+  <% tab_unavailable = (Redmine::VERSION::MAJOR < 4 || (Redmine::VERSION::MAJOR == 4 && Redmine::VERSION::MINOR < 1)) && !Redmine::Plugin.installed?(:redmine_issue_tabs) %>
+  <label class="block">
+    <%=  radio_button_tag('settings[display]', 'thread', @settings['display'] == 'thread', :disabled => tab_unavailable) %>
+    <%= l(:label_threaded_view) %>
+  </label>
+  <% if tab_unavailable %>
+    <em class="info error" style="margin: 3px;"><%= l(:text_redmine_issue_tabs_not_installed).html_safe %></em>
+  <% end %>
 </p>
 <% if Redmine::VERSION::MAJOR < 4 || (Redmine::VERSION::MAJOR == 4 && Redmine::VERSION::MINOR < 1) %>
   <p>
