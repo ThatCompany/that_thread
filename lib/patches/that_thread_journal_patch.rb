@@ -14,6 +14,7 @@ module Patches
                 attr_accessor :html_data
 
                 before_create :handle_invalid_reply
+                after_destroy :update_replies
 
                 alias_method :css_classes_without_thread, :css_classes
                 alias_method :css_classes, :css_classes_with_thread
@@ -38,6 +39,10 @@ module Patches
 
             def handle_invalid_reply
                 self.reply_to_id = nil if reply_to_id? && (!reply_to || notes.blank? || journalized != reply_to.journalized)
+            end
+
+            def update_replies
+                Journal.where(:reply_to_id => id).update_all(:reply_to_id => reply_to_id)
             end
 
         end
