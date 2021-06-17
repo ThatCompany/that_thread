@@ -17,7 +17,9 @@ module Patches
 
             def show_with_replies
                 show_without_replies
-                ActiveRecord::Associations::Preloader.new.preload(@replies, [ { :reply_to => :replies }, :replies ])
+                if Setting.plugin_that_thread['display'] == 'buttons'
+                    ActiveRecord::Associations::Preloader.new.preload(@replies, [ { :reply_to => :replies }, :replies ])
+                end
             end
 
         end

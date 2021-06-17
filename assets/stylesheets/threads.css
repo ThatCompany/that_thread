@@ -38,6 +38,7 @@ div.journal > div:target, div.message.reply:target {
     cursor: default;
 }
 .thread-links .navigation-links .icon-only {
+    vertical-align: middle;
     cursor: unset;
     opacity: 0.5;
 }
