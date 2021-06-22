@@ -65,3 +65,50 @@ div.journal > div:target, div.message.reply:target {
 body.controller-messages #reply {
     margin-top: 1em;
 }
+#tab-content-history.threaded, #tab-content-comments.threaded, #replies.threaded {
+    background-image: url(../images/thread.png);
+}
+#tab-content-history.threaded {
+    background-clip: content-box;
+    background-position-x: 6px;
+    padding-bottom: 6px;
+}
+#tab-content-history.threaded div.journal, #tab-content-comments.threaded div.journal, #replies.threaded .message {
+    background-color: #fff;
+    overflow: auto;
+}
+#tab-content-history.threaded div.journal.idnt-1, #tab-content-comments div.journal.idnt-1, #replies .message.idnt-1 {
+    margin-left: 16px;
+}
+#tab-content-history.threaded div.journal.idnt-2, #tab-content-comments div.journal.idnt-2, #replies .message.idnt-2 {
+    margin-left: 32px;
+}
+#tab-content-history.threaded div.journal.idnt-3, #tab-content-comments div.journal.idnt-3, #replies .message.idnt-3 {
+    margin-left: 48px;
+}
+#tab-content-history.threaded div.journal.idnt-4, #tab-content-comments div.journal.idnt-4, #replies .message.idnt-4 {
+    margin-left: 64px;
+}
+#tab-content-history.threaded div.journal.idnt-5, #tab-content-comments div.journal.idnt-5, #replies .message.idnt-5 {
+    margin-left: 80px;
+}
+#tab-content-history.threaded div.journal.idnt-6, #tab-content-comments div.journal.idnt-6, #replies .message.idnt-6 {
+    margin-left: 96px;
+}
+#tab-content-history.threaded div.journal.idnt-7, #tab-content-comments div.journal.idnt-7, #replies .message.idnt-7 {
+    margin-left: 112px;
+}
+#tab-content-history.threaded div.journal.idnt-8, #tab-content-comments div.journal.idnt-8, #replies .message.idnt-8 {
+    margin-left: 128px;
+}
+#tab-content-history.threaded div.journal.idnt-9, #tab-content-comments div.journal.idnt-9, #replies .message.idnt-9 {
+    margin-left: 144px;
+}
+#tab-content-history div.journal {
+    order: var(--indice);
+}
+#tab-content-history.threaded div.journal blockquote, #tab-content-comments.threaded div.journal blockquote {
+    background-color: #fafafa;
+    margin-right: 0.6em;
+    color: #888;
+}

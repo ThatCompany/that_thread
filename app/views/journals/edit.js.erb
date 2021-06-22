@@ -1,0 +1,10 @@
+<%= render :file => File.join(Rails.root, 'app/views/journals/edit.js.erb') %>
+
+var $journalForm = $('#journal-<%= @journal.id %>-form');
+var $journalDiv = $journalForm.closest('div.journal');
+if ($journalDiv.hasClass('idnt')) {
+    var classMatches = $journalDiv.attr('class').match(/\bidnt-(\d+)\b/);
+    if (classMatches) {
+        $journalForm.append($('<input>', { type: 'hidden', name: 'level', value: classMatches[1] }));
+    }
+}
