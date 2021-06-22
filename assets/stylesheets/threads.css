@@ -71,6 +71,7 @@ body.controller-messages #reply {
 #tab-content-history.threaded {
     background-clip: content-box;
     background-position-x: 6px;
+    padding-bottom: 6px;
 }
 #tab-content-history.threaded div.journal, #tab-content-comments.threaded div.journal, #replies.threaded .message {
     background-color: #fff;
