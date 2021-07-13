@@ -38,7 +38,7 @@ module Patches
 
             def issue_attributes_from_keywords_with_reply_to(issue)
                 attrs = issue_attributes_from_keywords_without_reply_to(issue)
-                attrs['reply_to_id'] = @from_journal.id if @from_journal
+                attrs['reply_to_id'] = @from_journal.id if @from_journal && @from_journal.notes?
                 attrs
             end
 
