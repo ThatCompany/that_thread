@@ -28,7 +28,7 @@ div.journal > div:target, div.message.reply:target {
     clear: left;
 }
 .thread-links {
-    margin-bottom: 0.5em;
+    padding: 0.5em 0;
     margin-top: -0.25em;
     font-size: 0.9em;
     color: #959595;
@@ -75,7 +75,6 @@ body.controller-messages #reply {
 }
 #tab-content-history.threaded div.journal, #tab-content-comments.threaded div.journal, #replies.threaded .message {
     background-color: #fff;
-    overflow: auto;
 }
 #tab-content-history.threaded div.journal.idnt-1, #tab-content-comments div.journal.idnt-1, #replies .message.idnt-1 {
     margin-left: 16px;
